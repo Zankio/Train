@@ -26,7 +26,7 @@
         auto_datepicker: true,
         display_fare: true,
         single_column: false,
-        quick_date: ['今天', '明天', '週一'],
+        quick_date: ['今天', '明天'],
         quick_time: ['06', '09', 12, 16, 18]
     }
 
