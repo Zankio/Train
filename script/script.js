@@ -51,22 +51,6 @@
         });
     });
 
-    function getDateFromOffsetFn(offset) {
-        return function () {
-            return moment().add(offset, 'day').format('YYYY-MM-DD');
-        }
-    }
-
-    function getDateFromWeekNameFn(week_name) {
-        return function () {
-            var date = moment(week_name, 'ddd');
-            if (date.isSameOrBefore(moment(), 'day'))
-                date.add(1, 'week');
-            return date.format('YYYY-MM-DD');
-        }
-    }
-
-
     $.fn.datepicker.languages['zh-TW'] = {
         format: 'yyyy年mm月dd日',
         days: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
@@ -219,12 +203,38 @@
         });
     });
 
+    function showDefaultPanel() {
+        var panel = $('.setting-sidebar .active').data('panel');
+        var panel_class = '.setting-' + panel;
+        $(panel_class).show();
+    }
+
+    function getDateFromOffsetFn(offset) {
+        return function () {
+            return moment().add(offset, 'day').format('YYYY-MM-DD');
+        }
+    }
+
+    function getDateFromWeekNameFn(week_name) {
+        return function () {
+            var date = moment(week_name, 'ddd');
+            if (date.isSameOrBefore(moment(), 'day'))
+                date.add(1, 'week');
+            return date.format('YYYY-MM-DD');
+        }
+    }
+
     function bindSettingToCheckBox(setting_name, checkbox, cb) {
         cb = cb || function() {}
         checkbox.prop('checked', setting[setting_name]);
         checkbox.change(function() {
+
+            // save setting
             setting[setting_name] = checkbox.prop('checked');
+
             cb();
+
+            // save setting to localStorage
             saveSetting();
         });
         cb();
