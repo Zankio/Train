@@ -491,16 +491,13 @@ html, body {
 
 .setting-sidebar ul li {
     padding:7px 0;
-    border-right: 3px solid #bdbdbd;
     cursor: pointer;
+    border-right: 3px solid #bdbdbd;
+    transition: all .5s;
 }
 
 .setting-sidebar ul li.active {
     border-right: 3px solid #f44336;
-}
-
-.setting-panel label {
-    display: inline-block;
 }
 
 .setting-group {
@@ -523,7 +520,7 @@ html, body {
     font-weight: bold;
 }
 
-.setting-panel {
+.setting-panels {
     top: 100px;
     left: 200px;
     right: 0;
@@ -534,6 +531,13 @@ html, body {
     position: absolute;
 }
 
+.setting-panels label {
+    display: inline-block;
+}
+
+.setting-panel{
+    display: none;
+}
 
 @media screen and (max-width: 500px) {
     .setting-modal {
@@ -545,11 +549,9 @@ html, body {
     .setting-sidebar {
         width: 30%;
     }
-    .setting-panel {
+    .setting-panels {
         left: 30%;
     }
-
-
 }
 
 .single-column .result {
@@ -598,4 +600,3 @@ html, body {
         width: 400px;
     }
 }
-

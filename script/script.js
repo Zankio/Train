@@ -111,6 +111,20 @@
             initialStation($(this));
         });
 
+        $('[data-panel]').click(function() {
+            var self = $(this);
+            var panel = self.data('panel');
+            var panel_class = '.setting-' + panel;
+
+            $('.setting-sidebar .active').removeClass('active');
+            self.addClass('active');
+
+            $('.setting-panel').hide();
+            $(panel_class).show();
+        })
+
+        showDefaultPanel();
+
         // Datepicker on pick
         $('.datepicker').on('pick.datepicker', function (e) {
             var datepicker = $('.datepicker');

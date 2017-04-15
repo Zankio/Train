@@ -99,20 +99,18 @@
         </div>
     </div>
 
-
-
     <div class="setting">
         <div class="setting-cover"></div>
         <div class="setting-modal">
             <h1>設定<span class="close">x</span></h1>
             <div class="setting-sidebar">
                 <ul>
-                    <li class="active">一般</li>
-                    <li>關於</li>
+                    <li class="active" data-panel="general">一般</li>
+                    <li data-panel="about">關於</li>
                 </ul>
             </div>
-            <div class="setting-panel">
-                <div class="setting-general">
+            <div class="setting-panels">
+                <div class="setting-general setting-panel">
                     <div class="common-station setting-group">
                         <div class="title"> 常用車站: </div>
                         <div class="selection">
@@ -188,7 +186,21 @@
                         <label><input type="checkbox" /> 自動顯示時間選擇</label>
                     </div>
                 </div>
-                <div class="setting-location"></div>
+                <div class="setting-location setting-panel"></div>
+                <div class="setting-about setting-panel">
+                    <div class="setting-single">
+                        <h3>作者</h3>
+                        <p>Zankio</p>
+                    </div>
+                    <div class="setting-single">
+                        <h3>資料來源</h3>
+                        <p>公共運輸整合資訊流通服務平臺</p>
+                    </div>
+                    <div class="setting-single">
+                        <h3>Icons</h3>
+                        <p><a href="https://icons8.com/">Icons8</a></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
