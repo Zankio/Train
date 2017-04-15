@@ -216,26 +216,6 @@
         cb();
     }
 
-    function queryStartEndStation(list) {
-        while (list.length > 0) {
-            splice_list = list.splice(0, 30);
-            train.getStartEndStation(splice_list, param.date)
-                .done(function(data) {
-                    for (idx in data) {
-                        var train = data[idx];
-                        var train_no = train.DailyTrainInfo.TrainNo;
-                        var stop_times = train.StopTimes;
-                        var departure_station = stop_times[0].StationName.Zh_tw;
-                        var arrival_station = stop_times[stop_times.length - 1].StationName.Zh_tw;
-
-                        var train_row = $('[data-train-no="' + train_no + '"]');
-                        train_row.find('.departure-station').text(departure_station);
-                        train_row.find('.arrival-station').text(arrival_station);
-                    }
-                });
-        }
-    }
-
     function getTrainFlagClass(train_info) {
         var flags = [];
 
@@ -292,11 +272,11 @@
         var train_no = train.DailyTrainInfo.TrainNo;
         var train_type_id = train.DailyTrainInfo.TrainClassificationID;
 
-        var departure_station = "--";
+        var start_station = train.DailyTrainInfo.StartingStationName;
         var departure_time = train.OriginStopTime.DepartureTime;
         var from_station = train.OriginStopTime.StationName.Zh_tw;
 
-        var arrival_station = "--";
+        var end_station = train.DailyTrainInfo.EndingStationName;
         var arrival_time = train.DestinationStopTime.ArrivalTime;
         var to_station = train.DestinationStopTime.StationName.Zh_tw;
 
@@ -324,9 +304,9 @@
             train_no: train_no,
             train_type_name: train_type_name,
 
-            departure_station: departure_station,
+            start_station: start_station,
             departure_time: departure_time,
-            arrival_station: arrival_station,
+            end_station: end_station,
             arrival_time: arrival_time,
 
             time: time,
@@ -376,8 +356,6 @@
                     var train_no = data[idx].DailyTrainInfo.TrainNo;
                     no_list.push(train_no);
                 }
-
-                queryStartEndStation(no_list);
             })
             .then(function(data) {
                 if (setting.display_fare)
@@ -596,13 +574,13 @@
                         '<span class="train-no">${train_no}</span>',
                     '</div>',
                     '<div class="departure">',
-                        '<div class="departure-station">${departure_station}</div>',
+                        '<div class="departure-station">${start_station}</div>',
                         '<div class="from-station">${from_station}</div>',
                         '<div class="departure-time">${departure_time}</div>',
                     '</div>',
                     '<div class="time"><div class="right-arrow"></div><div class="clear"></div>${time}</div>',
                         '<div class="arrival">',
-                        '<div class="arrival-station">${arrival_station}</div>',
+                        '<div class="arrival-station">${end_station}</div>',
                         '<div class="to-station">${to_station}</div>',
                         '<div class="arrival-time">${arrival_time}</div>',
                     '</div>',
