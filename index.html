@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=400, initial-scale=1">
+    <meta charset="utf-8"/>
+    <title>火車時刻查詢</title>
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Sortable/1.5.1/Sortable.min.js"></script>
+    <script src="./script/moment.min.js"></script>
+    <script src="./script/datepicker.min.js"></script>
+    <script src="./script/timepicker.js"></script>
+    <script src="./script/data.js"></script>
+    <script src="./script/train.js"></script>
+    <script src="./script/script.js"></script>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/datepicker.min.css">
+</head>
+<body>
+    <div id="bg"></div>
+    <div class="container">
+        <div class="search-form">
+            <div class="section-start"></div>
+            <div class="title">火車時刻查詢
+                <!-- Settings icon by Icons8 -->
+                <img class="icon icons8-Settings open-setting" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAADd0lEQVRoQ+1ZXVLbMBBeobyXGzScoPFk/Vw4Ae0JCCcoPQHpCQonKD0B9AQNz5LH9AQNN4B3lO1sazPGWFrJcaZlGr1GXu23P5++VRS88KVeuP+wBfC3MzhoBowxpVJqEgJFRDd5nmdDAR8UgLWWYhxDxMHOHcyQMWZfKfU9BgARHeR5vojZK+3ZAqgjZIyZK6VOpYjx70qpj9Pp9Cxmr7RnyAxEAyCiT3mezyXnYn4XAdS1zeyhlDpDxK9Nw2VZjp1zHPl3ALAbcygALAFg3rbF3xpjDpVSJwAw0VpnWZbxXu+KAdCmxjsiuhiNRuer1eqIiPiwWMfbjiyJ6Jgb2lp7xKAAYNzYtEDEg94AiqKYEdGXyKius+3OFwSJsbwZKMty1zn3c43orgOo+e0SEfd8xrwAUlhlKE+9TgZYqxNA1Zgc/X9l3Wmt97Is41J7sjoBWGsvK1bpA+CW2WpnZ2eRZdkNGyjLcrJarfarhn/dxygAnCMiE0YYQIokeGYs4oIqiuKEiD73AVFl4QmtPsuAtZb5nDOQtCrO/h1xafUNklLqeDqdXjTt+3pg4py7AoCodPeRBomZuAeAGSKyT3IPVHXLNMpoD4WI3iJi8/KREvD4u7WWyyEYJCK6Ho1GM9+NLN7EUqT6RL9GINmO0UwiAD4sNGml1H47NcxOzrnSk7LgBVZ/EwUgNGmtO12ta/u/AeBttg2W0A9EDD4QcBmJGSiK4pSIvMPHJpsYAE4Q8TxEayE1On54eLiUnkl4OAmpxdDh1lrWWxIFX2mtj7t0kDcD1RzA133UoNInCxKFtoAvtdbva20VvIn7DjEpvbCGXGFFGtZCa0ppsWattR8AoNeLRFeQfHKaD+CD+iyO0JnW+ropp51zb7kpI2red+Y3RGShKWuhapxkR171QbCJb7qkdJBGE5tsEz4/2gxpouA9EKMWN+r5H+P3WutxEo3WTgmDB2v0oUrMa6triAnSaDuixpiFUoobsF488855MqoA8swQNfh0ZOuWiGb8sFXRN9/4TVuinBClREWrN42nxWdTkefwUHU9BqG9ie8IHv45aNKjVrCJU2s75R0pZlCJPV/MQKyhFNbqIz18fgwGIOWlIaY0YgO3BdCM1Iv+k4+BWGv5YeuNkH6RGmPLZ1AWSjl0yL2D9cCQTqXY2gJIidYm9v4C34DcQM/rH00AAAAASUVORK5CYII=" width="20" height="20">
+            </div>
+            <div class="section-end"></div>
+            <hr class="header-hr">
+            <div class="section-start"></div>
+
+            <!-- Station -->
+            <div class="section station">
+                <div class="from" data-select-no="1">
+                    <div class="field">起站</div>
+                    <div class="field-input">--</div>
+                </div>
+                <div class="swap">◀◼▶</div>
+                <div class="to" data-select-no="2">
+                    <div class="field" style="text-align: right">迄站</div>
+                    <div class="field-input">--</div>
+                </div>
+                <div class="clear"></div>
+
+                <div class="selection">
+                    <div class="common common_station"></div>
+                    <div class="else">
+                        <select class="range" name="">
+                            <option value="">選擇地區</option>
+                        </select>
+                        <select class="station" name="">
+                            <option value="">--</option>
+                        </select>
+                        <div class="option-station sure">確定</div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-end"></div>
+            <hr class="header-hr">
+            <div class="section-start"></div>
+
+
+            <!-- Date Time -->
+            <div class="section datetime">
+                <div class="date" data-select-no="3">
+                    <div class="field">日期</div>
+                    <div class="field-input">----/--/--</div>
+                </div>
+                <div class="time" data-select-no="4">
+                    <div class="field">時間</div>
+                    <div class="field-input">--:--</div>
+                </div>
+                <div class="clear"></div>
+
+                <div class="selection">
+                    <div class="datepicker"></div>
+                    <div class="timepicker"> </div>
+                </div>
+            <div class="clear"></div>
+            </div>
+            <div class="section-end"></div>
+            <hr class="header-hr">
+            <div class="section-start"></div>
+
+
+            <!-- Query -->
+            <div class="section query">&gt;&gt;&gt; 查詢</div>
+            <div class="section-end"></div>
+        </div>
+        <div class="clear"></div>
+
+        <!-- Result -->
+        <div class="result">
+            <img src="image/loading.svg" class="loading" alt="">
+        </div>
+    </div>
+
+
+
+    <div class="setting">
+        <div class="setting-cover"></div>
+        <div class="setting-modal">
+            <h1>設定<span class="close">x</span></h1>
+            <div class="setting-sidebar">
+                <ul>
+                    <li class="active">一般</li>
+                    <li>關於</li>
+                </ul>
+            </div>
+            <div class="setting-panel">
+                <div class="setting-general">
+                    <div class="common-station setting-group">
+                        <div class="title"> 常用車站: </div>
+                        <div class="selection">
+                            <div class="common common_station"></div>
+                            <div class="else">
+                                <select class="range" name="">
+                                    <option value="">選擇地區</option>
+                                </select>
+                                <select class="station" name="">
+                                    <option value="">--</option>
+                                </select>
+                                <div class="option-station add">加入</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-date setting-group">
+                        <div class="title"> 常用日期: </div>
+                        <p>
+                            <label><input type="checkbox" value="今天"/> 今天</label>
+                            <label><input type="checkbox" value="明天"/> 明天</label>
+                            <label><input type="checkbox" value="後天"/> 後天</label>
+                            <label><input type="checkbox" value="大後天"> 大後天</label>
+                        </p>
+                        <label><input type="checkbox" value="週日"/> 週日</label>
+                        <label><input type="checkbox" value="週一"/> 週一</label>
+                        <label><input type="checkbox" value="週二"/> 週二</label>
+                        <label><input type="checkbox" value="週三"/> 週三</label>
+                        <label><input type="checkbox" value="週四"/> 週四</label>
+                        <label><input type="checkbox" value="週五"/> 週五</label>
+                        <label><input type="checkbox" value="週六"/> 週六</label>
+                    </div>
+
+                    <div class="quick-time setting-group">
+                        <div class="title"> 常用時間: </div>
+                        <label><input type="checkbox" value="00"/> 00</label>
+                        <label><input type="checkbox" value="01"/> 01</label>
+                        <label><input type="checkbox" value="02"/> 02</label>
+                        <label><input type="checkbox" value="03"/> 03</label>
+                        <label><input type="checkbox" value="04"/> 04</label>
+                        <label><input type="checkbox" value="05"/> 05</label>
+                        <label><input type="checkbox" value="06"/> 06</label>
+                        <label><input type="checkbox" value="07"/> 07</label>
+                        <label><input type="checkbox" value="08"/> 08</label>
+                        <label><input type="checkbox" value="09"/> 09</label>
+                        <label><input type="checkbox" value="10"/> 10</label>
+                        <label><input type="checkbox" value="11"/> 11</label>
+                        <label><input type="checkbox" value="12"/> 12</label>
+                        <label><input type="checkbox" value="13"/> 13</label>
+                        <label><input type="checkbox" value="14"/> 14</label>
+                        <label><input type="checkbox" value="15"/> 15</label>
+                        <label><input type="checkbox" value="16"/> 16</label>
+                        <label><input type="checkbox" value="17"/> 17</label>
+                        <label><input type="checkbox" value="18"/> 18</label>
+                        <label><input type="checkbox" value="19"/> 19</label>
+                        <label><input type="checkbox" value="20"/> 20</label>
+                        <label><input type="checkbox" value="21"/> 21</label>
+                        <label><input type="checkbox" value="22"/> 22</label>
+                        <label><input type="checkbox" value="23"/> 23</label>
+                    </div>
+
+                    <div class="single-column setting-single">
+                        <label><input type="checkbox" /> 單欄顯示</label><br/>
+                    </div>
+
+                    <div class="display-fare setting-single">
+                        <label><input type="checkbox" /> 顯示票價</label><br/>
+                    </div>
+                    <div class="auto-datepicker setting-single">
+                        <label><input type="checkbox" /> 自動顯示日期選擇</label>
+                    </div>
+                    <div class="auto-timepicker setting-single">
+                        <label><input type="checkbox" /> 自動顯示時間選擇</label>
+                    </div>
+                </div>
+                <div class="setting-location"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- background -->
+    <div class="bg-credit">
+        <a href="https://www.flickr.com/photos/can185-way/17273697815/">Photo: 威翰 陳</a>
+    </div>
+</body>
+
+</html>
