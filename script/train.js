@@ -81,4 +81,10 @@
             url: URL_PREFEX + formatString("/ODFare/${from}/to/${to}", { from: from, to: to }),
         });
     }
+
+    train.getLiveBoard = function getLiveBoard(station) {
+        return $.ajax({
+            url: URL_PREFEX + formatString("/LiveBoard/${station}", { station: station }),
+        });
+    }
 })(window);

@@ -313,7 +313,7 @@ html, body {
 }
 
 .train-row .line:before {
-    line-height: 77px;
+    margin-top: 27px;
     display: inline-block;
     width: 40px;
     content: " - ";

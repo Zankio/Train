@@ -25,6 +25,7 @@
         auto_timepicker: true,
         auto_datepicker: true,
         display_fare: true,
+        display_delay: true,
         display_note: false,
         single_column: false,
         quick_date: ['今天', '明天'],
@@ -181,6 +182,7 @@
                 $('html').removeClass('single-column');
         });
         bindSettingToCheckBox('display_fare', $('.setting .display-fare input'));
+        bindSettingToCheckBox('display_delay', $('.setting .display-delay input'));
         bindSettingToCheckBox('display_note', $('.setting .display-note input'));
         bindSettingToCheckBox('auto_timepicker', $('.setting .auto-timepicker input'));
         bindSettingToCheckBox('auto_datepicker', $('.setting .auto-datepicker input'));
@@ -385,10 +387,11 @@
                 var no_list = [];
                 for (var idx in data) {
                     $('.result').append(createTrainResultElement(data[idx]));
-
-                    var train_no = data[idx].DailyTrainInfo.TrainNo;
-                    no_list.push(train_no);
                 }
+            })
+            .then(function(data) {
+                if (setting.display_delay)
+                    queryLiveBoard();
             })
             .then(function(data) {
                 if (setting.display_fare)
@@ -421,6 +424,24 @@
                 $('.fare-tc').text("$" + fare_tc);
                 $('.fare-ck').text("$" + fare_ck);
                 $('.fare-local').text("$" + fare_local);
+            });
+    }
+
+    function queryLiveBoard() {
+        train.getLiveBoard(param.from)
+            .then(function(data) {
+                for (var i in data) {
+                    var info = data[i];
+                    var train_no = info.TrainNo;
+                    var delay = info.DelayTime;
+                    var delay_str = "準點";
+
+                    if (delay > 0)
+                        delay_str = "晚" + delay + "分";
+
+                    $('[data-train-no=' + train_no + '] .delay').text(delay_str);
+                }
+
             });
     }
 
@@ -601,7 +622,10 @@
         var template = {
             TRAIN_RESULT: [
                 '<div class="train-row" data-train-no="${train_no}">',
-                    '<div class="line"></div>',
+                    '<div>',
+                        '<div class="line"></div>',
+                        '<div class="delay"></div>',
+                    '</div>',
                     '<div class="train-info">',
                         '<span class="train-type">${train_type_name}</span>',
                         '<span class="train-no">${train_no}</span>',
