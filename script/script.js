@@ -25,6 +25,7 @@
         auto_timepicker: true,
         auto_datepicker: true,
         display_fare: true,
+        display_note: false,
         single_column: false,
         quick_date: ['今天', '明天'],
         quick_time: ['06', '09', 12, 16, 18]
@@ -180,6 +181,7 @@
                 $('html').removeClass('single-column');
         });
         bindSettingToCheckBox('display_fare', $('.setting .display-fare input'));
+        bindSettingToCheckBox('display_note', $('.setting .display-note input'));
         bindSettingToCheckBox('auto_timepicker', $('.setting .auto-timepicker input'));
         bindSettingToCheckBox('auto_datepicker', $('.setting .auto-datepicker input'));
 
@@ -318,11 +320,17 @@
 
         var flags = getTrainFlagClass(train.DailyTrainInfo);
 
+
         if (line === 1)
             line_class = 'mountain';
         else if (line === 2)
             line_class = 'coast';
 
+        var note = train.DailyTrainInfo.Note.Zh_tw;
+        note = note.replace('每日行駛。', '');
+
+        if (setting.display_note && note.length > 0)
+            flags.push('has-note');
 
         var html = template("TRAIN_RESULT",{
             train_no: train_no,
@@ -336,7 +344,8 @@
             time: time,
             from_station: from_station,
             to_station: to_station,
-            fare_class: fare_class
+            fare_class: fare_class,
+            note: note
         });
 
         var ele = $(html)
@@ -608,7 +617,7 @@
                         '<div class="to-station">${to_station}</div>',
                         '<div class="arrival-time">${arrival_time}</div>',
                     '</div>',
-                    '<div class="note">',
+                    '<div class="flag">',
                         '<div class="bicycle"><img src="./image/bicycle-40.png" title="自行車" width="20"></div>',
                         '<div class="wheelchair"><img src="./image/wheelchair-48.png" title="身障座位" width="20"></div>',
                         '<div class="breastfeeding"><img src="./image/breastfeeding-48.png" title="哺乳室" width="20"></div>',
@@ -616,6 +625,7 @@
                     '</div>',
                     '<div class="orderfare"><span class="order">訂</span><span class="fare-info ${fare_class}"></span></div>',
                     '<div class="clear"></div>',
+                    '<div class="note">${note}</div>',
                 '</div>'
             ].join(''),
             QUICK_OPTION: '<span class="quick-option" data-value="${value}">${label}</span>'

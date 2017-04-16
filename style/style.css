@@ -408,20 +408,20 @@ html, body {
     font-size: 15px;
 }
 
-.train-row .note {
+.train-row .flag {
     box-sizing: border-box;
     width: 20px;
     text-align: center;
 }
 
-.train-row .note div {
+.train-row .flag div {
     line-height: 0px;
 }
 
-.train-row .note .bicycle,
-.train-row .note .breastfeeding,
-.train-row .note .overnight,
-.train-row .note .wheelchair{
+.train-row .flag .bicycle,
+.train-row .flag .breastfeeding,
+.train-row .flag .overnight,
+.train-row .flag .wheelchair{
     display: none;
 }
 
@@ -430,6 +430,23 @@ html, body {
 .train-row.flag-overnight .overnight,
 .train-row.flag-wheelchair .wheelchair{
     display: block;
+}
+
+.train-row .note {
+    display: none;
+}
+
+.train-row.has-note .note {
+    display: block;
+    float: none;
+    height: auto;
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 50px;
+}
+
+.train-row.has-note {
+    padding-bottom: 0px;
 }
 
 .bg-credit {
