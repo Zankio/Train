@@ -657,7 +657,10 @@
                         '<div class="breastfeeding"><img src="./image/breastfeeding-48.png" title="哺乳室" width="20"></div>',
                         '<div class="overnight"><img src="./image/waning_gibbous-48.png" title="跨夜" width="20"></div>',
                     '</div>',
-                    '<div class="orderfare"><span class="order">訂</span><span class="fare-info ${fare_class}"></span></div>',
+                    '<div class="orderfare">',
+                        '<div class="order">訂</div>',
+                        '<div class="fare-info ${fare_class}"></div>',
+                    '</div>',
                     '<div class="clear"></div>',
                     '<div class="note">${note}</div>',
                 '</div>'
