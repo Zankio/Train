@@ -365,19 +365,22 @@
             .addClass(train_type_class)
             .addClass(flags.join(' '));
 
-        ele.find('.order').click(function() {
-            var row = $(this).parents('.train-row');
-            var train_no = row.data('train-no');
-            var stop_from = stop_list.filter(function(d) { return d.stop_id == param.from; })[0];
-            var stop_to = stop_list.filter(function(d) { return d.stop_id == param.to; })[0];
+        if (fare_class !== 'fare-local') {
+            ele.find('.orderfare').click(function() {
+                var row = $(this).parents('.train-row');
+                var train_no = row.data('train-no');
+                var stop_from = stop_list.filter(function(d) { return d.stop_id == param.from; })[0];
+                var stop_to = stop_list.filter(function(d) { return d.stop_id == param.to; })[0];
 
-            window.open("http://railway.hinet.net/ctno1.htm?"
-                + "from_station=" + stop_from.reservation_code
-                + "&to_station=" + stop_to.reservation_code
-                + "&getin_date=" + moment(param.date).format('YYYY/MM/DD')
-                + "&train_no=" + train_no);
+                window.open("http://railway.hinet.net/ctno1.htm?"
+                    + "from_station=" + stop_from.reservation_code
+                    + "&to_station=" + stop_to.reservation_code
+                    + "&getin_date=" + moment(param.date).format('YYYY/MM/DD')
+                    + "&train_no=" + train_no);
 
-        });
+            });
+        }
+
         return ele;
     }
 
