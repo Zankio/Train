@@ -322,7 +322,6 @@
 
         var flags = getTrainFlagClass(train.DailyTrainInfo);
 
-
         if (line === 1)
             line_class = 'mountain';
         else if (line === 2)
@@ -333,6 +332,17 @@
 
         if (setting.display_note && note.length > 0)
             flags.push('has-note');
+
+        if (from_station.length >= 4)
+            flags.push('from-len-4');
+        else if (from_station.length >= 3)
+            flags.push('from-len-3');
+
+        if (to_station.length >= 4)
+            flags.push('to-len-4');
+        else if (to_station.length >= 3)
+            flags.push('to-len-3');
+
 
         var html = template("TRAIN_RESULT",{
             train_no: train_no,

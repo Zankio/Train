@@ -411,6 +411,22 @@ html, body {
     font-size: 28px;
 }
 
+.train-row.to-len-4 .arrival .to-station,
+.train-row.from-len-4 .departure .from-station
+{
+    font-size: 14px;
+    line-height: 28px;
+    margin-top: 8px;
+}
+
+.train-row.to-len-3 .arrival .to-station,
+.train-row.from-len-3 .departure .from-station
+{
+    font-size: 19px;
+    line-height: 28px;
+    margin-top: 9px;
+}
+
 .train-row .arrival .arrival-time {
     color: #bbbbbb;
     font-size: 15px;
