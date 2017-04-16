@@ -269,6 +269,9 @@ html, body {
     padding-bottom: 10px;
     border-bottom: 1px solid #f8f8f8;
 }
+.single-column .train-row {
+    padding-left: 8px;
+}
 
 .train-row>* {
     font-weight: bold;
