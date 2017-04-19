@@ -60,7 +60,7 @@
         daysMin: ['日', '一', '二', '三', '四', '五', '六'],
         months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
         monthsShort: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-        weekStart: 1,
+        weekStart: 0,
         startView: 0,
         yearFirst: true,
         yearSuffix: '年'
@@ -83,6 +83,7 @@
             autoShow: false,
             autoHide: true,
             inline: true,
+            weekStart: 0,
             format: 'yyyy-mm-dd'
         });
 
