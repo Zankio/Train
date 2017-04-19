@@ -84,6 +84,7 @@
             autoHide: true,
             inline: true,
             weekStart: 0,
+            startDate: moment().format('YYYY-MM-DD'),
             format: 'yyyy-mm-dd'
         });
 
